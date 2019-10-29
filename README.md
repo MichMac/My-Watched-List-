@@ -6,5 +6,5 @@ Do wykonania tego projektu wykorzystam:
 
 - QT - Jako graficzny interfejs
 - SQLite - Lokalna baza danych
-- OMDb lub TMDb - API do podłączenia do bazy danych seriali/filmów
+- OMDb lub TMDb - API do uzyskania dostępu do bazy danych seriali/filmów
 
