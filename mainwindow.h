@@ -1,6 +1,9 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
+#include "newform.h"
+#include "tmdb.h"
+
 #include <QMainWindow>
 #include <QListWidgetItem>
 #include <QListWidget>
@@ -29,6 +32,7 @@ public slots:
 
 private slots:
     void on_pushButton_3_clicked();
+    void on_pushButton_tmdb_clicked();
 
 private:
     Ui::MainWindow *ui;

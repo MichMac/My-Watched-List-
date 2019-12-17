@@ -42,17 +42,18 @@ void LoginWindow::on_Login_Button_clicked()
 
     QSqlQuery q;
     QString execute ="SELECT username,password FROM users WHERE username = :username AND password = :password ";
-    qDebug() << q.prepare(execute);
+    q.prepare(execute);
     q.bindValue(":username", username);
     q.bindValue(":password", password);
     q.exec();
+    /*
     qDebug()<<"Executed query: " <<q.executedQuery();
     qDebug()<<"Last query: " <<q.lastQuery();
     qDebug()<< q.lastError().text();
     qDebug() << q.boundValue(":username");
     qDebug() << q.boundValue(":password");
     qDebug() << q.exec();
-
+    */
 
     if(q.exec())
     {
@@ -70,18 +71,4 @@ void LoginWindow::on_Login_Button_clicked()
 
     }
 
-
-
-    /*
-    if(username == "test" && password == "test"){
-        QMessageBox::information(this, "Login", "Login Successful");
-        this -> hide();
-        MainWindow *w = new MainWindow();
-        //w->setAttribute(Qt::WA_DeleteOnClose);
-        w->show();
-    }
-    else {
-        QMessageBox::warning(this,"Login", "Login Failed");
-    }
-    */
 }

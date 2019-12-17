@@ -53,9 +53,9 @@
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="pushButton_2">
+      <widget class="QPushButton" name="pushButton_tmdb">
        <property name="text">
-        <string>Dodaj z IMDB</string>
+        <string>Dodaj z TMDb</string>
        </property>
       </widget>
      </item>

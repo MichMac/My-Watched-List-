@@ -1,6 +1,5 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-#include "newform.h"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -42,7 +41,12 @@ void MainWindow::setShow(QString Title, QString Type, QString Episodes,
 }
 
 
-
+void MainWindow::on_pushButton_tmdb_clicked()
+{
+    tmdb NewTmdb;
+    NewTmdb.setModal(true);
+    NewTmdb.exec();
+}
 
 void MainWindow::on_pushButton_3_clicked()
 {
