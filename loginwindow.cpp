@@ -41,7 +41,7 @@ void LoginWindow::on_Login_Button_clicked()
     }
 
     QSqlQuery q;
-    QString execute ="SELECT username,password FROM users WHERE username = :username AND password = :password ";
+    QString execute ="SELECT user_id,username,password FROM users WHERE username = :username AND password = :password ";
     q.prepare(execute);
     q.bindValue(":username", username);
     q.bindValue(":password", password);
@@ -59,9 +59,15 @@ void LoginWindow::on_Login_Button_clicked()
     {
         if(q.next())
         {
-            QMessageBox::information(this, "Login", "Login successfull");
-            this -> hide();
+            user_id = q.value("user_id").toString();
+            //qDebug() << user_id;
             MainWindow *w = new MainWindow();
+            connect(this, SIGNAL(passUserId(QString)), w,
+                    SLOT(userInfo(QString)));
+            emit passUserId(user_id);
+            QMessageBox::information(this, "Login", "Login successfull");
+            db.close();
+            this -> hide();
             //w->setAttribute(Qt::WA_DeleteOnClose);
             w->show();
 
@@ -72,3 +78,4 @@ void LoginWindow::on_Login_Button_clicked()
     }
 
 }
+

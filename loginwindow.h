@@ -22,11 +22,15 @@ public:
     explicit LoginWindow(QWidget *parent = nullptr);
     ~LoginWindow();
 
+signals:
+    void passUserId(QString user_id);
+
 private slots:
     void on_Login_Button_clicked();
 
 private:
     Ui::LoginWindow *ui;
+    QString user_id;
     QString username;
     QString password;
 };

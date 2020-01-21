@@ -21,14 +21,19 @@ class MainWindow : public QMainWindow
     Q_OBJECT
 
 public:
+    QString user_id;
     QSqlDatabase db;
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
+signals:
+    void passUserInfo(QString);
+
 public slots:
     void on_pushButton_clicked();
-    void setShow(QString Title, QString Type, QString Episodes,
+    void setCustomShow(QString Title, QString Type, QString Episodes,
                  QString Status, QString Rating, QString Description, QString Picfile);
+    void userInfo(QString);
 
 private slots:
     void on_pushButton_3_clicked();
