@@ -17,6 +17,7 @@
 #include <QListWidget>
 #include <QListWidgetItem>
 #include <QSize>
+#include <QStackedLayout>
 
 namespace Ui {
 class tmdb;

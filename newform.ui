@@ -84,13 +84,13 @@
     <string/>
    </property>
   </widget>
-  <widget class="QWidget" name="">
+  <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
      <x>300</x>
      <y>10</y>
      <width>441</width>
-     <height>361</height>
+     <height>391</height>
     </rect>
    </property>
    <layout class="QHBoxLayout" name="horizontalLayout">
@@ -140,21 +140,7 @@
          </font>
         </property>
         <property name="text">
-         <string>Odcinki</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QLabel" name="label_5">
-        <property name="font">
-         <font>
-          <pointsize>12</pointsize>
-          <weight>75</weight>
-          <bold>true</bold>
-         </font>
-        </property>
-        <property name="text">
-         <string>Status</string>
+         <string>Data premiery</string>
         </property>
        </widget>
       </item>
@@ -190,10 +176,7 @@
        <widget class="QTextEdit" name="Type_form"/>
       </item>
       <item>
-       <widget class="QTextEdit" name="Episodes_form"/>
-      </item>
-      <item>
-       <widget class="QTextEdit" name="Status_form"/>
+       <widget class="QTextEdit" name="Date_form"/>
       </item>
       <item>
        <widget class="QTextEdit" name="Rating_form"/>

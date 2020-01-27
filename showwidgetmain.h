@@ -1,7 +1,7 @@
-#ifndef SHOWWIDGET_H
-#define SHOWWIDGET_H
+#ifndef SHOWWIDGETMAIN_H
+#define SHOWWIDGETMAIN_H
 
-#include "tmdb.h"
+#include <QWidget>
 
 #include <QWidget>
 #include <QNetworkReply>
@@ -10,28 +10,34 @@
 #include <QSqlQuery>
 #include <QDebug>
 #include <QSqlError>
-
+#include <QFile>
+#include <QFileInfo>
+#include <QMessageBox>
 
 namespace Ui {
-class ShowWidget;
+class ShowWidgetMain;
 }
 
-class ShowWidget : public QWidget
+class ShowWidgetMain : public QWidget
 {
     Q_OBJECT
 
 public:
     void showInfo(QVariantMap showInfo);
-    explicit ShowWidget(QWidget *parent = nullptr);
-    ~ShowWidget();
+    explicit ShowWidgetMain(QVariantMap ShowMap,QWidget *parent = nullptr);
+    ~ShowWidgetMain();
+
+signals:
 
 
 private slots:
-    void on_pushButton_add_clicked();
-    void settingUi(QVariantMap showMap);
+
+
+    void on_pushButtont_Delete_clicked();
 
 private:
-    Ui::ShowWidget *ui;
+    Ui::ShowWidgetMain *ui;
+    void settingUi();
     QString rating;
     QSqlDatabase db;
     QVariantMap showMap;
@@ -39,8 +45,9 @@ private:
     QString user_id;
     void dataBaseConnection();
     void getImage(QString url);
+    void getCustomImage(QString path);
     void downloadFinished(QNetworkReply* reply);
 
 };
 
-#endif // SHOWWIDGET_H
+#endif // SHOWWIDGETMAIN_H

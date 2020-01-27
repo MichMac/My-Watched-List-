@@ -6,6 +6,10 @@
 #include <QMessageBox>
 #include <QDialog>
 #include <QPixmap>
+#include <QSqlDatabase>
+#include <QSqlQuery>
+#include <QDebug>
+#include <QSqlError>
 
 namespace Ui {
 class newForm;
@@ -24,18 +28,19 @@ private slots:
     void on_pushButton_clicked();
 
 signals:
-    void passValue(QString Title, QString Type, QString Episodes,
-                   QString Status, QString Rating, QString Description, QString Picfile);
+    void passValue(QString Title, QString Type, QString Date,
+                   QString Rating, QString Description, QString Picfile);
 
 private:
     Ui::newForm *ui;
+    QSqlDatabase db;
+    void dataBaseConnection();
     QString title;
     QString type;
-    QString episodes;
-    QString status;
-    QString rating;
+    QString date;
     QString description;
-    QString currentPicFile = "";
+    QString rating;
+    QString filename;
 
 };
 

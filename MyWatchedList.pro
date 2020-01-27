@@ -20,14 +20,18 @@ SOURCES += \
     main.cpp \
     mainwindow.cpp \
     newform.cpp \
+    show.cpp \
     showwidget.cpp \
+    showwidgetmain.cpp \
     tmdb.cpp
 
 HEADERS += \
     loginwindow.h \
     mainwindow.h \
     newform.h \
+    show.h \
     showwidget.h \
+    showwidgetmain.h \
     tmdb.h
 
 FORMS += \
@@ -35,6 +39,7 @@ FORMS += \
     mainwindow.ui \
     newform.ui \
     showwidget.ui \
+    showwidgetmain.ui \
     tmdb.ui
 
 # Default rules for deployment.

@@ -31,7 +31,11 @@
       <enum>QLayout::SetDefaultConstraint</enum>
      </property>
      <item>
-      <widget class="QListView" name="listView"/>
+      <widget class="QListWidget" name="listWidget">
+       <property name="enabled">
+        <bool>true</bool>
+       </property>
+      </widget>
      </item>
     </layout>
    </widget>
@@ -39,9 +43,9 @@
     <property name="geometry">
      <rect>
       <x>0</x>
-      <y>100</y>
-      <width>101</width>
-      <height>159</height>
+      <y>40</y>
+      <width>111</width>
+      <height>171</height>
      </rect>
     </property>
     <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -60,7 +64,7 @@
       </widget>
      </item>
      <item>
-      <widget class="QTextEdit" name="textEdit">
+      <widget class="QTextEdit" name="textFilter">
        <property name="toolTipDuration">
         <number>0</number>
        </property>
@@ -72,9 +76,26 @@
        </property>
       </widget>
      </item>
+     <item>
+      <widget class="QPushButton" name="pushButton_Filtruj">
+       <property name="text">
+        <string>Filtruj</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pushButton_Sort">
+       <property name="text">
+        <string>Sortuj</string>
+       </property>
+       <property name="checkable">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
     </layout>
    </widget>
-   <widget class="QPushButton" name="pushButton_3">
+   <widget class="QPushButton" name="pushButton_refresh">
     <property name="geometry">
      <rect>
       <x>670</x>

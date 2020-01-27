@@ -75,29 +75,11 @@ void tmdb::managerFinished(QNetworkReply *reply) {
     QVariantList localList = mainMap["results"].toList();
     //asking for value
     mapShow = localList[0].toMap();
-
     mapShow.insert("media_type",show_category_request);
-
-    /*if(show_category_request == "Film"){
-        //asking for value
-        qDebug() << mapShow["original_title"].toString();
-        mapShow.insert("media_type",show_category_request);
-        qDebug() << mapShow["media_type"].toString();
-        qDebug() << mapShow["vote_average"].toString();
-        qDebug() << mapShow["release_date"].toString();
-        //qDebug() << map["overview"];
-        //qDebug() << map["poster_path"];
-    }
-    else{
-        mapShow.insert("media_type",show_category_request);
-
-        //qDebug() << map["overview"];
-        //qDebug() << map["poster_path"];
-    }*/
-
     setShowData(mapShow);
 
     ShowWidget* showWidget = new ShowWidget;
+
     //connect with widget class
     connect(this, SIGNAL(passShowInfo(QVariantMap)), showWidget,
             SLOT(settingUi(QVariantMap)));
@@ -105,26 +87,30 @@ void tmdb::managerFinished(QNetworkReply *reply) {
     emit passShowInfo(mapShow);
 
     reply->deleteLater();
-    /*
-    //Creating a new list widget
-    QListWidgetItem* listWidgetItem = new QListWidgetItem(ui->listWidget);
-    //Adding item
-    ui->listWidget->addItem(listWidgetItem);
 
-    QSize size (showWidget->width(),showWidget->height());
-    listWidgetItem->setSizeHint(size);
-
-    ui->listWidget->setItemWidget(listWidgetItem,showWidget);
-    */
-    //QSize size (showWidget->width(),showWidget->height());
-    QWidget* firstPageWidget = showWidget;
-    QStackedWidget* stackedWidget = new QStackedWidget(ui->stackedWidget);
-    stackedWidget->addWidget(firstPageWidget);
-
+    QStackedWidget* stackedWidget = new QStackedWidget();
     QVBoxLayout* layout = new QVBoxLayout;
-    layout->addWidget(stackedWidget);
+
+    stackedWidget -> addWidget(showWidget);
+    layout -> addWidget(stackedWidget);
     setLayout(layout);
+
+
+
     //firstPageWidget->show();
+
+    /*
+    QListWidgetItem* item = new QListWidgetItem(ui->listWidget);
+    QSize size (showWidget->width(),showWidget->height());
+    item -> setSizeHint(size);
+    ui -> listWidget ->setSizeIncrement(size);
+    ui -> listWidget -> setItemWidget(item, showWidget);
+    qDebug() << ui->listWidget->count();
+    if(ui->listWidget->count() > 1){
+        ui -> listWidget -> takeItem(ui->listWidget->row);
+        delete item;
+    }
+    */
 }
 
 void tmdb::setShowData(QVariantMap data){

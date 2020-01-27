@@ -23,12 +23,26 @@ void newForm::on_Dodaj_accepted()
 {
     title = ui->Title_form->toPlainText();
     type = ui->Type_form->toPlainText();
-    episodes = ui->Episodes_form->toPlainText();
-    status = ui->Status_form->toPlainText();
+    date = ui->Date_form->toPlainText();
     rating = ui->Rating_form->toPlainText();
     description = ui->Description_form->toPlainText();
+    emit passValue(title,type,date,rating,description,filename);
 
-    emit passValue(title,type,episodes,status,rating,description,currentPicFile);
+    //qDebug() << "widget user id: " + user_id;
+    dataBaseConnection();
+    QSqlQuery q;
+    QString execute ="INSERT INTO show (title,media_type,release_date,vote_average,description,poster_path) VALUES (:title,:media_type,:release_date,:vote_average,:description,:poster_path)";
+    q.prepare(execute);
+    //binding values to send to database
+    q.bindValue(":title",title);
+    q.bindValue(":media_type", type);
+    q.bindValue(":release_date",date);
+    q.bindValue(":vote_average", rating);
+    q.bindValue(":description", description);
+    q.bindValue(":poster_path", filename);
+    q.exec();
+    //qDebug() << "excecuted query: "+ q.executedQuery();
+    db.close();
 
 
     //QListWidgetItem *item = new QListWidgetItem(Title,Type,Episodes,Status);
@@ -38,13 +52,28 @@ void newForm::on_Dodaj_accepted()
 
 void newForm::on_pushButton_clicked()
 {
-    QString filename = QFileDialog::getOpenFileName(this, "Open the picture file");
+    filename = QFileDialog::getOpenFileName(this, "Open the picture file");
     QFile file(filename);
-    currentPicFile = filename;
     if(!file.open(QIODevice::ReadOnly | QFile::Text)){
         QMessageBox::warning(this, "Warning", "Cannot open file: " + file.errorString());
     }
     QPixmap pix(filename);
     pix.scaled(229,324);
     ui->label_pic->setPixmap(pix);
+}
+
+void newForm::dataBaseConnection(){
+
+    db = QSqlDatabase::addDatabase("QSQLITE");
+    db.setDatabaseName("E:\\studia\\ProjektC++\\MyWatchedList\\mwl_database.sqlite");
+    QFileInfo checkFile("mwl_database.sqlite");
+
+    if(checkFile.isFile())
+    {
+        if(!db.open())
+        {
+            QMessageBox::information(this,"Database","Database connection failed");
+        }
+    }
+    db.open();
 }

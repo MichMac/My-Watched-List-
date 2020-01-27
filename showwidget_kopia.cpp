@@ -2,12 +2,13 @@
 #include "ui_showwidget.h"
 #include "mainwindow.h"
 
-ShowWidget::ShowWidget(QWidget *parent) :
+ShowWidget::ShowWidget(QVariantMap ShowMap,QWidget *parent) :
     QWidget(parent),
     ui(new Ui::ShowWidget)
 {
     ui->setupUi(this);
-    //qDebug() << "showwidget: " + showMap["title"].toString();
+    showMap = ShowMap;
+    settingUi();
 
 }
 
@@ -16,25 +17,19 @@ ShowWidget::~ShowWidget()
     delete ui;
 }
 
-void ShowWidget::settingUi(QVariantMap showMap){
+void ShowWidget::settingUi(){
 
-    showInfo(showMap);
+    //showInfo(showMap);
 
-        getImage(showMap["poster_path"].toString());
-        //poster_image -> loadFromData(poster);
+    getImage(showMap["poster_path"].toString());
+    //qDebug() << "poster path: " + showMap["poster_path"].toString();
+    //poster_image -> loadFromData(poster);
 
-        ui->label_type->setText(showMap["media_type"].toString());
-        if(showMap["media_type"].toString()=="Film"){
-            ui->label_title->setText(showMap["original_title"].toString());
-            ui->label_date->setText(showMap["release_date"].toString());
-        }
-        else{
-            ui->label_title->setText(showMap["original_name"].toString());
-            ui->label_date->setText(showMap["first_air_date"].toString());
-        }
-        ui->label_rating->setText(showMap["vote_average"].toString());
-        ui->plainTextEdit_description->setPlainText(showMap["overview"].toString());
-
+    ui->label_type->setText(showMap["media_type"].toString());
+    ui->label_date->setText(showMap["release_date"].toString());
+    ui->label_title->setText(showMap["title"].toString());
+    ui->label_rating->setText(showMap["vote_average"].toString());
+    ui->plainTextEdit_description->setPlainText(showMap["overview"].toString());
 
 
 }

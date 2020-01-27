@@ -3,6 +3,8 @@
 
 #include "newform.h"
 #include "tmdb.h"
+#include "show.h"
+#include "showwidgetmain.h"
 
 #include <QMainWindow>
 #include <QListWidgetItem>
@@ -21,6 +23,8 @@ class MainWindow : public QMainWindow
     Q_OBJECT
 
 public:
+    void clearList();
+    void getFromDatabase();
     QString user_id;
     QSqlDatabase db;
     MainWindow(QWidget *parent = nullptr);
@@ -30,24 +34,25 @@ signals:
     void passUserInfo(QString);
 
 public slots:
+    void update_List();
     void on_pushButton_clicked();
-    void setCustomShow(QString Title, QString Type, QString Episodes,
-                 QString Status, QString Rating, QString Description, QString Picfile);
-    void userInfo(QString);
+    void setCustomShow(QString Title, QString Type, QString Date,
+                       QString Rating, QString Description, QString Picfile);
+    //void userInfo(QString);
 
 private slots:
-    void on_pushButton_3_clicked();
     void on_pushButton_tmdb_clicked();
+    void on_pushButton_refresh_clicked();
+    //void on_textFilter_textChanged();
+    void on_pushButton_Filtruj_clicked();
+
+    void on_pushButton_Sort_clicked(bool checked);
 
 private:
     Ui::MainWindow *ui;
-    QString title;
-    QString type;
-    QString episodes;
-    QString status;
-    QString rating;
-    QString description;
-    QString picFile;
+    void fillShows(Show* show);
+    void dataBaseConnection();
+    QString records;
 
 };
 #endif // MAINWINDOW_H

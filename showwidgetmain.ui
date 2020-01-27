@@ -1,20 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>ShowWidget</class>
- <widget class="QWidget" name="ShowWidget">
+ <class>ShowWidgetMain</class>
+ <widget class="QWidget" name="ShowWidgetMain">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>500</width>
+    <width>615</width>
     <height>150</height>
    </rect>
-  </property>
-  <property name="sizePolicy">
-   <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-    <horstretch>0</horstretch>
-    <verstretch>0</verstretch>
-   </sizepolicy>
   </property>
   <property name="windowTitle">
    <string>Form</string>
@@ -22,74 +16,39 @@
   <widget class="QLabel" name="label_pic">
    <property name="geometry">
     <rect>
-     <x>4</x>
+     <x>10</x>
      <y>10</y>
-     <width>81</width>
-     <height>131</height>
+     <width>80</width>
+     <height>130</height>
     </rect>
+   </property>
+   <property name="sizePolicy">
+    <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+     <horstretch>80</horstretch>
+     <verstretch>130</verstretch>
+    </sizepolicy>
    </property>
    <property name="text">
     <string/>
    </property>
   </widget>
-  <widget class="QWidget" name="horizontalLayoutWidget_2">
-   <property name="geometry">
-    <rect>
-     <x>390</x>
-     <y>40</y>
-     <width>101</width>
-     <height>101</height>
-    </rect>
-   </property>
-   <layout class="QHBoxLayout" name="horizontalLayout_3">
-    <item>
-     <widget class="QPushButton" name="pushButton_add">
-      <property name="text">
-       <string>Dodaj</string>
-      </property>
-     </widget>
-    </item>
-   </layout>
-  </widget>
   <widget class="QWidget" name="">
    <property name="geometry">
     <rect>
-     <x>90</x>
+     <x>110</x>
      <y>10</y>
-     <width>301</width>
+     <width>491</width>
      <height>131</height>
     </rect>
    </property>
    <layout class="QVBoxLayout" name="verticalLayout">
     <item>
-     <layout class="QHBoxLayout" name="horizontalLayout_2">
+     <layout class="QHBoxLayout" name="horizontalLayout_12">
       <item>
-       <widget class="QLabel" name="label_title">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
+       <widget class="QLabel" name="label_title_6">
         <property name="font">
          <font>
           <family>Arial Rounded MT Bold</family>
-          <weight>50</weight>
-          <bold>false</bold>
-         </font>
-        </property>
-        <property name="text">
-         <string/>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QLabel" name="label_type">
-        <property name="font">
-         <font>
-          <family>Arial Rounded MT Bold</family>
-          <weight>50</weight>
-          <bold>false</bold>
          </font>
         </property>
         <property name="text">
@@ -101,12 +60,22 @@
        </widget>
       </item>
       <item>
-       <widget class="QLabel" name="label_date">
+       <widget class="QLabel" name="label_type_6">
         <property name="font">
          <font>
           <family>Arial Rounded MT Bold</family>
-          <weight>50</weight>
-          <bold>false</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="label_date_6">
+        <property name="font">
+         <font>
+          <family>Arial Rounded MT Bold</family>
          </font>
         </property>
         <property name="text">
@@ -118,12 +87,10 @@
        </widget>
       </item>
       <item>
-       <widget class="QLabel" name="label_rating">
+       <widget class="QLabel" name="label_rating_6">
         <property name="font">
          <font>
           <family>Arial Rounded MT Bold</family>
-          <weight>50</weight>
-          <bold>false</bold>
          </font>
         </property>
         <property name="text">
@@ -131,6 +98,13 @@
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="pushButtont_Delete">
+        <property name="text">
+         <string>Usuń</string>
         </property>
        </widget>
       </item>
