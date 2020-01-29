@@ -2,12 +2,12 @@
 #include "ui_mainwindow.h"
 
 
-MainWindow::MainWindow(QWidget *parent)
+MainWindow::MainWindow(QString &userid, QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    qDebug() << "userID konstruktorze: " + user_id;
+    user_id = userid;
     dataBaseConnection();
     getFromDatabase();
 
@@ -21,13 +21,13 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_pushButton_clicked()
 {
-    newForm NewForm;
-    NewForm.setModal(true);
+    newForm* NewForm = new newForm(user_id);
+    NewForm->setModal(true);
     //qRegisterMetaType< QList<QString> >( "QList<QString>" );
-    connect(&NewForm, SIGNAL(passValue(QString,QString,QString,QString)), this,
+    connect(NewForm, SIGNAL(passValue(QString,QString,QString,QString)), this,
             SLOT(setCustomShow(QString,QString,QString,QString,QString)));
 
-    NewForm.exec();
+    NewForm->exec();
 }
 
 
@@ -49,27 +49,12 @@ void MainWindow::setCustomShow(QString Title, QString Type, QString Date,
 
 void MainWindow::on_pushButton_tmdb_clicked()
 {
-    tmdb NewTmdb;
+    tmdb* NewTmdb = new tmdb(user_id);
     //qDebug() <<  "user id w mainwindow: " + user_id;
-    NewTmdb.setModal(true);
-    NewTmdb.exec();
+    NewTmdb->setModal(true);
+    NewTmdb->exec();
 }
-/*
-void MainWindow::userInfo(QString user_ID){
 
-    user_id = user_ID;
-    ShowWidget sw;
-    connect(this, SIGNAL(passUserInfo(QString)), &sw,
-            SLOT(getUserInfo(QString)));
-    emit passUserInfo(user_id);
-}
-*/
-/*
-QString MainWindow::getUserId(){
-
-    return user_id;
-}
-*/
 
 void MainWindow::dataBaseConnection(){
 
@@ -114,14 +99,11 @@ void MainWindow::on_pushButton_refresh_clicked()
 
 void MainWindow::getFromDatabase(){
 
-    qDebug() << "userID konstruktorze: " + user_id;
+    qDebug() << "userID w bazie: " + user_id;
     dataBaseConnection();
 
-    QSqlQuery count_q,shows_q;
-
+    //QSqlQuery count_q
     //QString execute_count ="SELECT COUNT(*) FROM show";
-    QString execute_shows = "SELECT * FROM show";
-
     //count_q.prepare(execute_count);
     //count_q.exec();
 
@@ -147,10 +129,13 @@ void MainWindow::getFromDatabase(){
         }
 
     }*/
-
+    QSqlQuery shows_q;
+    QString execute_shows = "SELECT * FROM show WHERE user_id=:user_ID";
     shows_q.prepare(execute_shows);
+    shows_q.bindValue(":user_ID",user_id);
     shows_q.exec();
-    qDebug()<< shows_q.lastError().text();
+    qDebug()<< shows_q.executedQuery();
+    //qDebug()<< shows_q.lastError().text();
 
     if(shows_q.exec())
     {
@@ -256,3 +241,4 @@ void MainWindow::update_List(){
 
     getFromDatabase();
 }
+

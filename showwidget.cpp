@@ -16,24 +16,25 @@ ShowWidget::~ShowWidget()
     delete ui;
 }
 
-void ShowWidget::settingUi(QVariantMap showMap){
+void ShowWidget::settingUi(QVariantMap showMap, QString user_ID){
 
     showInfo(showMap);
+    user_id = user_ID;
 
-        getImage(showMap["poster_path"].toString());
-        //poster_image -> loadFromData(poster);
+    getImage(showMap["poster_path"].toString());
+    //poster_image -> loadFromData(poster);
 
-        ui->label_type->setText(showMap["media_type"].toString());
-        if(showMap["media_type"].toString()=="Film"){
-            ui->label_title->setText(showMap["original_title"].toString());
-            ui->label_date->setText(showMap["release_date"].toString());
-        }
-        else{
-            ui->label_title->setText(showMap["original_name"].toString());
-            ui->label_date->setText(showMap["first_air_date"].toString());
-        }
-        ui->label_rating->setText(showMap["vote_average"].toString());
-        ui->plainTextEdit_description->setPlainText(showMap["overview"].toString());
+    ui->label_type->setText(showMap["media_type"].toString());
+    if(showMap["media_type"].toString()=="Film"){
+        ui->label_title->setText(showMap["original_title"].toString());
+        ui->label_date->setText(showMap["release_date"].toString());
+    }
+    else{
+        ui->label_title->setText(showMap["original_name"].toString());
+        ui->label_date->setText(showMap["first_air_date"].toString());
+    }
+    ui->label_rating->setText(showMap["vote_average"].toString());
+    ui->plainTextEdit_description->setPlainText(showMap["overview"].toString());
 
 
 
@@ -62,7 +63,6 @@ void ShowWidget::downloadFinished(QNetworkReply* reply){
 void ShowWidget::on_pushButton_add_clicked()
 {
     //MainWindow* m = new MainWindow;
-    qDebug() << "widget user id: " + user_id;
     dataBaseConnection();
     QSqlQuery q;
     QString execute ="INSERT INTO show (title,media_type,release_date,vote_average,description,poster_path,user_id) VALUES (:title,:media_type,:release_date,:vote_average,:description,:poster_path,:user_id)";

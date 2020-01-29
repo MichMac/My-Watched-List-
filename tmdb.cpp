@@ -2,11 +2,13 @@
 #include "ui_tmdb.h"
 
 
-tmdb::tmdb(QWidget *parent) :
+tmdb::tmdb(QString &user_ID, QWidget *parent) :
     QDialog(parent),
     ui(new Ui::tmdb)
 {
     ui->setupUi(this);
+    user_id = user_ID;
+
     QFile file("E:\\studia\\ProjektC++\\MyWatchedList\\apikey.txt");
     if (!file.open(QIODevice::ReadOnly | QIODevice::Text)){
         qDebug()<<"Nie ma pliku";
@@ -81,10 +83,10 @@ void tmdb::managerFinished(QNetworkReply *reply) {
     ShowWidget* showWidget = new ShowWidget;
 
     //connect with widget class
-    connect(this, SIGNAL(passShowInfo(QVariantMap)), showWidget,
-            SLOT(settingUi(QVariantMap)));
+    connect(this, SIGNAL(passShowInfo(QVariantMap,QString)), showWidget,
+            SLOT(settingUi(QVariantMap,QString)));
     //signal
-    emit passShowInfo(mapShow);
+    emit passShowInfo(mapShow,user_id);
 
     reply->deleteLater();
 

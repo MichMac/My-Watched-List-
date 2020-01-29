@@ -28,7 +28,8 @@ class tmdb : public QDialog
     Q_OBJECT
 
 public:
-    explicit tmdb(QWidget *parent = nullptr);
+    QString user_id;
+    explicit tmdb(QString &user_ID, QWidget *parent = nullptr);
     ~tmdb();
 
 private slots:
@@ -36,7 +37,7 @@ private slots:
     void on_pushButton_search_clicked();
 
 signals:
-    void passShowInfo(QVariantMap);
+    void passShowInfo(QVariantMap,QString);
 
 private:
     Ui::tmdb *ui;

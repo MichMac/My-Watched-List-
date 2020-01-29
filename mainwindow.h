@@ -27,7 +27,7 @@ public:
     void getFromDatabase();
     QString user_id;
     QSqlDatabase db;
-    MainWindow(QWidget *parent = nullptr);
+    MainWindow(QString &userid, QWidget *parent = nullptr);
     ~MainWindow();
 
 signals:
@@ -38,7 +38,6 @@ public slots:
     void on_pushButton_clicked();
     void setCustomShow(QString Title, QString Type, QString Date,
                        QString Rating, QString Description, QString Picfile);
-    //void userInfo(QString);
 
 private slots:
     void on_pushButton_tmdb_clicked();

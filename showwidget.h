@@ -28,7 +28,7 @@ public:
 
 private slots:
     void on_pushButton_add_clicked();
-    void settingUi(QVariantMap showMap);
+    void settingUi(QVariantMap showMap, QString user_ID);
 
 private:
     Ui::ShowWidget *ui;

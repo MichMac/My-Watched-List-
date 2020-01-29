@@ -2,7 +2,6 @@
 #include "ui_loginwindow.h"
 #include "mainwindow.h"
 
-
 LoginWindow::LoginWindow(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::LoginWindow)
@@ -61,10 +60,7 @@ void LoginWindow::on_Login_Button_clicked()
         {
             user_id = q.value("user_id").toString();
             //qDebug() << user_id;
-            MainWindow *w = new MainWindow();
-            connect(this, SIGNAL(passUserId(QString)), w,
-                    SLOT(userInfo(QString)));
-            emit passUserId(user_id);
+            MainWindow *w = new MainWindow(user_id);
             QMessageBox::information(this, "Login", "Login successfull");
             db.close();
             this -> hide();

@@ -20,7 +20,7 @@ class newForm : public QDialog
     Q_OBJECT
 
 public:
-    explicit newForm(QWidget *parent = nullptr);
+    explicit newForm(QString &user_ID, QWidget *parent = nullptr);
     ~newForm();
 
 private slots:
@@ -33,6 +33,7 @@ signals:
 
 private:
     Ui::newForm *ui;
+    QString user_id;
     QSqlDatabase db;
     void dataBaseConnection();
     QString title;

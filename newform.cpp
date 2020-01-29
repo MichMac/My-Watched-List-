@@ -4,12 +4,13 @@
 
 
 
-newForm::newForm(QWidget *parent) :
+newForm::newForm(QString &user_ID,QWidget *parent) :
 
     QDialog(parent),
     ui(new Ui::newForm)
 {
     ui->setupUi(this);
+    user_id = user_ID;
     QPixmap pix("E:/studia/projekt c++/MyWatchedList/pics/noimage.jpg");
     pix.scaled(321,201);
     ui->label_pic->setPixmap(pix);}
@@ -31,9 +32,10 @@ void newForm::on_Dodaj_accepted()
     //qDebug() << "widget user id: " + user_id;
     dataBaseConnection();
     QSqlQuery q;
-    QString execute ="INSERT INTO show (title,media_type,release_date,vote_average,description,poster_path) VALUES (:title,:media_type,:release_date,:vote_average,:description,:poster_path)";
+    QString execute ="INSERT INTO show (user_id,title,media_type,release_date,vote_average,description,poster_path) VALUES (:user_id,:title,:media_type,:release_date,:vote_average,:description,:poster_path)";
     q.prepare(execute);
     //binding values to send to database
+    q.bindValue(":user_id", user_id);
     q.bindValue(":title",title);
     q.bindValue(":media_type", type);
     q.bindValue(":release_date",date);
